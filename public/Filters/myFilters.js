@@ -1,5 +1,5 @@
-var app = angular.module("myFilters",[])
-app.filter("unique", function () {
+angular.module("myFilters",[])
+.filter("unique", function () {
   return function (data, propertyName) {
     if (angular.isArray(data) && angular.isString(propertyName)) {
       var results = [];
@@ -19,7 +19,7 @@ app.filter("unique", function () {
   }
 })
 
-app.filter("range",function($filter){
+.filter("range",function($filter){
   return function(data,page,size){
     if(angular.isArray(data) && angular.isNumber(page) && angular.isNumber(size)){
       var start = (page - 1) * size ;
@@ -33,7 +33,7 @@ app.filter("range",function($filter){
   }
 })
 
-app.filter("pageCount",function(){
+.filter("pageCount",function(){
   return function(data , size){
     if(angular.isArray(data)){
       var result = [];
