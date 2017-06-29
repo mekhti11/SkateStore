@@ -6,15 +6,15 @@
     return {
 
         addProduct: function (id, name, price) {
-            var addedToExistingItem = false;
+            var added = false;
             for (var i = 0; i < cartData.length; i++) {
                 if (cartData[i].id == id) {
                     cartData[i].count++;
-                    addedToExistingItem = true;
+                    added = true;
                     break;
                 }
             }
-            if (!addedToExistingItem) {
+            if (!added) {
                 cartData.push({
                     count: 1, id: id, price: price, name: name
                 });
@@ -37,8 +37,8 @@
 })
 .directive("cartSummary", function (cart) {
     return {
-        restrict: "E",
-        templateUrl: "components/cart/cartSummary.html",
+        restrict: "E", //means that this directive can be applied only as an element
+        templateUrl: "components/cart/cartSummary.html", //Specifies the URL of a partial view whose contents will be inserted into the directive’s element.
         controller: function ($scope) {
 
             var cartData = cart.getProducts();
@@ -49,7 +49,7 @@
                     total += (cartData[i].price * cartData[i].count);
                 }
                 return total;
-            }
+            };
 
             $scope.itemCount = function () {
                 var total = 0;
@@ -57,8 +57,7 @@
                     total += cartData[i].count;
                 }
                 return total;
-            }
+            };
         }
     };
 });
-
